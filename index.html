@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>To the Power of Math!</title>
+    <title>Case Study!</title>
     <!-- Styling for the client UI -->
     <style>
     h1 {
@@ -86,7 +86,7 @@
     </script>
 </head>
 <body>
-    <h1>TO THE POWER OF MATH!</h1>
+    <h1>Case Study!</h1>
 	<form>
 	    <label>ID:</label>
         <input type="text" id="empid">
@@ -101,9 +101,9 @@
         <!-- set button onClick method to call function we defined passing input values as parameters -->
         <button type="button" onclick="callAPI(document.getElementById('empid').value, document.getElementById('name').value,document.getElementById('location').value,document.getElementById('org').value,document.getElementById('salary').value)">SUBMIT</button>
 		<br>
-		<label>ID:</label>
-        <input type="text" id="empid">
-		<button type="button" onclick="callAPI2(document.getElementById('empid').value)">GET</button>
+		<label>QUERY ID:</label>
+        <input type="text" id="queryid">
+		<button type="button" onclick="callAPI2(document.getElementById('queryid').value)">GET</button>
 
     </form>
 </body>
