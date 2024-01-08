@@ -42,13 +42,13 @@
     </style>
     <script>
         // callAPI function that takes the base and exponent numbers as parameters
-        var callAPI = (base,exponent)=>{
+        var callAPI = (name,location,org, salary)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"base":base,"exponent":exponent});
+            var raw = JSON.stringify({"name":name,"location":location,"org":org,"salary":salary});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -88,13 +88,22 @@
 <body>
     <h1>TO THE POWER OF MATH!</h1>
 	<form>
-        <label>Base number:</label>
-        <input type="text" id="base">
-        <label>...to the power of:</label>
-        <input type="text" id="exponent">
+	    <label>ID:</label>
+        <input type="text" id="id">
+        <label>Name:</label>
+        <input type="text" id="name">
+        <label>Location:</label>
+        <input type="text" id="location">
+		<label>Org:</label>
+        <input type="text" id="org">
+        <label>Salary:</label>
+        <input type="text" id="salary">
         <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('base').value,document.getElementById('exponent').value)">CALCULATE</button>
-		<button type="button" onclick="callAPI2(document.getElementById('base').value)">GETITEM</button>
+        <button type="button" onclick="callAPI(document.getElementById('id').value, document.getElementById('name').value,document.getElementById('location').value,document.getElementById('org').value,document.getElementById('salary').value)">SUBMIT</button>
+		<br>
+		<label>ID:</label>
+        <input type="text" id="id">
+		<button type="button" onclick="callAPI2(document.getElementById('id').value)">GET</button>
 
     </form>
 </body>

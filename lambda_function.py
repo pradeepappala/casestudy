@@ -20,25 +20,32 @@ def lambda_handler(event, context):
 
 # extract the two numbers from the Lambda service's event object
     print(event)
-    if event.get('base'):
-        print("base=", event['base'])
-        mathResult = int(math.pow(int(event['base']), int(event['exponent'])))
-
+    if event.get('name'):
+        print("name=", event['name'])
         # write result and time to the DynamoDB table using the object we instantiated and save response in a variable
         response = table.put_item(
                     Item={
-                    'ID': str(mathResult),
+                    'ID': event['id'],
+                    'name': event['name'],
+                    'location': event['location'],
+                    'org': event['org'],
+                    'salary': event['salary'],
                     'LatestGreetingTime':now
                     })
+        # return a properly formatted JSON object
+        return {
+        'statusCode': 200,
+        'body': json.dumps('Employee Id created Successfully:' + str(event['id']))
+        }
     else:
         print("id=", event['id'])
         response = table.get_item(Key={'ID':str(event['id'])})
         print("response=",response)
         mathResult=response['Item']
+    
+        # return a properly formatted JSON object
+        return {
+        'statusCode': 200,
+        'body': json.dumps('Employee Id created Successfully:' + str(mathResult))
+        }
         
-
-    # return a properly formatted JSON object
-    return {
-    'statusCode': 200,
-    'body': json.dumps('Your result is ' + str(mathResult))
-    }
