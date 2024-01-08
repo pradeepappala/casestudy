@@ -25,7 +25,7 @@ def lambda_handler(event, context):
         # write result and time to the DynamoDB table using the object we instantiated and save response in a variable
         response = table.put_item(
                     Item={
-                    'ID': event['id'],
+                    'ID': int(event['id']),
                     'name': event['name'],
                     'location': event['location'],
                     'org': event['org'],
@@ -49,3 +49,4 @@ def lambda_handler(event, context):
         'body': json.dumps('Employee Id created Successfully:' + str(mathResult))
         }
         
+

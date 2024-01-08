@@ -42,13 +42,13 @@
     </style>
     <script>
         // callAPI function that takes the base and exponent numbers as parameters
-        var callAPI = (name,location,org, salary)=>{
+        var callAPI = (empid, name,location,org, salary)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"name":name,"location":location,"org":org,"salary":salary});
+            var raw = JSON.stringify({"id":empid,"name":name,"location":location,"org":org,"salary":salary});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -63,13 +63,13 @@
             .catch(error => console.log('error', error));
         }
         // callAPI function that takes the base and exponent numbers as parameters
-        var callAPI2 = (id)=>{
+        var callAPI2 = (empid)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"id":id});
+            var raw = JSON.stringify({"id":empid});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -89,7 +89,7 @@
     <h1>TO THE POWER OF MATH!</h1>
 	<form>
 	    <label>ID:</label>
-        <input type="text" id="id">
+        <input type="text" id="empid">
         <label>Name:</label>
         <input type="text" id="name">
         <label>Location:</label>
@@ -99,11 +99,11 @@
         <label>Salary:</label>
         <input type="text" id="salary">
         <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('id').value, document.getElementById('name').value,document.getElementById('location').value,document.getElementById('org').value,document.getElementById('salary').value)">SUBMIT</button>
+        <button type="button" onclick="callAPI(document.getElementById('empid').value, document.getElementById('name').value,document.getElementById('location').value,document.getElementById('org').value,document.getElementById('salary').value)">SUBMIT</button>
 		<br>
 		<label>ID:</label>
-        <input type="text" id="id">
-		<button type="button" onclick="callAPI2(document.getElementById('id').value)">GET</button>
+        <input type="text" id="empid">
+		<button type="button" onclick="callAPI2(document.getElementById('empid').value)">GET</button>
 
     </form>
 </body>
