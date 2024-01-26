@@ -11,7 +11,7 @@ from time import gmtime, strftime
 # create a DynamoDB object using the AWS SDK
 dynamodb = boto3.resource('dynamodb')
 # use the DynamoDB object to select our table
-table = dynamodb.Table('powerofmathdb')
+table = dynamodb.Table('casestudyDb')
 # store the current time in a human readable format in a variable
 now = strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
 
@@ -25,7 +25,7 @@ def lambda_handler(event, context):
         # write result and time to the DynamoDB table using the object we instantiated and save response in a variable
         response = table.put_item(
                     Item={
-                    'ID': int(event['id']),
+                    'ID': event['id'],
                     'name': event['name'],
                     'location': event['location'],
                     'org': event['org'],
@@ -42,11 +42,9 @@ def lambda_handler(event, context):
         response = table.get_item(Key={'ID':str(event['id'])})
         print("response=",response)
         mathResult=response['Item']
-    
+        
         # return a properly formatted JSON object
         return {
         'statusCode': 200,
         'body': json.dumps('Employee Id created Successfully:' + str(mathResult))
         }
-        
-
