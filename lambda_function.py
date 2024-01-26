@@ -35,16 +35,16 @@ def lambda_handler(event, context):
         # return a properly formatted JSON object
         return {
         'statusCode': 200,
-        'body': json.dumps('Employee Id created Successfully:' + str(event['id']))
+        'body': f'Created/Updated Employee Id - {event["id"]} Successfully!'
         }
     else:
         print("id=", event['id'])
         response = table.get_item(Key={'ID':str(event['id'])})
         print("response=",response)
-        mathResult=response['Item']
+        res=response['Item']
         
         # return a properly formatted JSON object
         return {
         'statusCode': 200,
-        'body': json.dumps('Employee Id created Successfully:' + str(mathResult))
+        'body': f"Retrieved Details of Emp id - {res['ID']}, Name - {res['name']}, Location - {res['location']}, Org - {res['org']}, Salary - {res['salary']}"
         }

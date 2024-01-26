@@ -45,6 +45,7 @@
         var callAPI = (empid, name,location,org, salary)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
+			var responseText = document.getElementById('response');
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
@@ -59,13 +60,14 @@
             // make API call with parameters and use promises to get response
             fetch("https://wd2ef2dsqc.execute-api.ap-southeast-2.amazonaws.com/dev", requestOptions)
             .then(response => response.text())
-            .then(result => alert(JSON.parse(result).body))
+            .then(result => responseText.innerHTML = JSON.parse(result).body)
             .catch(error => console.log('error', error));
         }
         // callAPI function that takes the base and exponent numbers as parameters
         var callAPI2 = (empid)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
+			var responseText = document.getElementById('getresponse');
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
@@ -80,7 +82,7 @@
             // make API call with parameters and use promises to get response
             fetch("https://wd2ef2dsqc.execute-api.ap-southeast-2.amazonaws.com/dev", requestOptions)
             .then(response => response.text())
-            .then(result => alert(JSON.parse(result).body))
+            .then(result => responseText.innerHTML = JSON.parse(result).body)
             .catch(error => console.log('error', error));
         }		
     </script>
@@ -101,9 +103,13 @@
         <!-- set button onClick method to call function we defined passing input values as parameters -->
         <button type="button" onclick="callAPI(document.getElementById('empid').value, document.getElementById('name').value,document.getElementById('location').value,document.getElementById('org').value,document.getElementById('salary').value)">SUBMIT</button>
 		<br>
+		<label id="response"></label>
+		<br>
 		<label>QUERY ID:</label>
         <input type="text" id="queryid">
 		<button type="button" onclick="callAPI2(document.getElementById('queryid').value)">GET</button>
+		<br>
+		<label id="getresponse"></label>
 
     </form>
 </body>
